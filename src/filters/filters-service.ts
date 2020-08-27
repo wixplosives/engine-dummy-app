@@ -4,15 +4,26 @@ export enum FILTERS {
     CLOUDS = 'clouds'
 }
 
+let fiboNum = 0;
+const fibo = (num: number): number => {
+    if (num === 0) {
+        return 0
+    }
+    if (num === 1) {
+        return 1
+    }
+    return fibo(num -1) + fibo(num - 2);
+}
+
 export class FiltersService {
     private appliedFilters:Array<FILTERS> = [];
-
-    public constructor(private activeFiltersSlot: any) {
-    }
     
-    public applyFilter(filter: FILTERS):void {
+
+    
+    public applyFilter(filter: FILTERS):Array<FILTERS> {
         this.appliedFilters.push(filter);
-        this.activeFiltersSlot.register([...this.appliedFilters]);
+        console.log(fibo(fiboNum++));
+        return this.appliedFilters
     }
 }
 
